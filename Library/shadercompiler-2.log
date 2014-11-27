@@ -1,0 +1,131 @@
+Base path: /Applications/Unity (4.5.3)/Unity.app/Contents
+Pipe name: \\.\pipe\UnityShaderCompiler-2--1335607296
+Cmd: getPlatforms
+Cmd: compileSnippet
+  api=9 type=0 insize=1692 outsize=1413 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1692 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1737 outsize=874 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1737 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1747 outsize=959 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1747 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1906 outsize=1282 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1906 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1691 outsize=1282 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1691 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1689 outsize=1382 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1689 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1687 outsize=1413 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1687 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1688 outsize=1411 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1688 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1736 outsize=1463 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1736 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1697 outsize=1339 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1697 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1738 outsize=1319 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1738 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1734 outsize=1319 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1734 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=2046 outsize=1630 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=2046 outsize=1923 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=2046 outsize=7 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=5 type=1 insize=2046 outsize=6 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1732 outsize=1420 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1732 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1720 outsize=1366 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1720 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1731 outsize=1411 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1731 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1732 outsize=1420 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1732 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1732 outsize=1391 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1732 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1717 outsize=1356 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1717 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1729 outsize=1415 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1729 outsize=7 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1688 outsize=1269 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1688 outsize=1562 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1688 outsize=7 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=5 type=1 insize=1688 outsize=6 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1766 outsize=1361 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1766 outsize=1654 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1766 outsize=7 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1766 outsize=7 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1809 outsize=1455 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1809 outsize=1748 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1809 outsize=7 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1809 outsize=7 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=2053 outsize=1816 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=2053 outsize=2109 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=2053 outsize=7 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=2053 outsize=7 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1695 outsize=1455 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=5 type=0 insize=1695 outsize=1747 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1695 outsize=7 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1695 outsize=7 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=9 type=0 insize=1008 outsize=625 kw= ok=1
+Cmd: compileSnippet
+  api=9 type=1 insize=1008 outsize=7 kw= ok=1

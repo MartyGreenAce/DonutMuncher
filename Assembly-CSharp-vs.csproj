@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{AA9091D0-EBC3-8151-82C1-5B86CDE9A981}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_3;UNITY_4_5;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity (4.5.3)/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity (4.5.3)/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_CacheTextures.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ClickToSpawn.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ClickToStamp.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DamageOnCollision.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DemoGUI.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DestroyAfterTime.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DestroyWithFixture.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DragToShoot.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DragToSlice.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Follow.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ImpartVelocity.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_MothershipCore.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_MothershipThruster.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ReplaceOnCollision.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ReplaceOnTrigger.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_SpawnOnCollision.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Spectator.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_SplitLimiter.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_SwayWithFixture.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Tooltip.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownCar.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownGun.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownSpaceship.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownThruster.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownWheel.cs" />
+     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Water.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_AlphaTex.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_ClassPool.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_ColliderBuilder.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_Helper.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_Helper_Editor.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_LinkedList.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_Point.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_PopupAttribute.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_Quad.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_RangeAttribute.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_Rect.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_SplitBuilder.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Library\D2D_SplitData.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_AutoSpriteCollider.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_Damageable.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_Destructible.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_DestructibleSprite.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_DetachableSprite.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_DynamicMass.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_EdgeSpriteCollider.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_ExplosionDamage.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_ExplosionForce.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_ExplosionStamp.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_Fixture.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_Fracturer.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_PolygonSpriteCollider.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_QuadFracturer.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_Splittable.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_SpriteCollider.cs" />
+     <Compile Include="Assets\Destructible2D\Required\Player\D2D_SwappableSprite.cs" />
+     <Compile Include="Assets\Scripts\Logic\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Logic\Player.cs" />
+     <Compile Include="Assets\Scripts\Logic\Spin.cs" />
+     <Compile Include="Assets\Scripts\Utilities\ButtonClickScaler.cs" />
+     <Compile Include="Assets\Scripts\Utilities\ButtonGoToScene.cs" />
+     <Compile Include="Assets\Scripts\Utilities\ButtonHandler.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Camera\tk2dCamera.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Camera\tk2dCameraAnchor.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Camera\tk2dCameraUtil.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Fonts\tk2dFont.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Fonts\tk2dFontData.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Fonts\tk2dTextGeomGen.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Fonts\tk2dTextMesh.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Gui\tk2dButton.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Runtime\tk2dResource.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Runtime\tk2dSystem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Runtime\tk2dUpdateManager.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dAnimatedSprite.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dBaseSprite.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dClippedSprite.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dPixelPerfectHelper.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dRuntimeSpriteCollection.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSlicedSprite.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSprite.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteAnimation.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteAnimator.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteAttachPoint.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteCollection.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteCollectionData.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteCollectionInterfaces.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteCollectionSize.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteFromTexture.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dSpriteGeomGen.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dStaticSpriteBatcher.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Sprites\tk2dTiledSprite.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\tk2dUtil.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2d\Code\Sprites\tk2dEditorSpriteDataUnloader.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMap.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMapBuilderUtil.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMapChunks.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMapColliderBuilder.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMapColliderBuilder2D.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMapData.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dTileMap\Code\tk2dTileMapMeshBuilder.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIBaseItemControl.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIDragItem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIDropDownItem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIDropDownMenu.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIHoverItem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIMultiStateToggleButton.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIProgressBar.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIScrollableArea.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIScrollbar.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUISoundItem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUITextInput.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIToggleButton.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIToggleButtonGroup.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIToggleControl.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUITweenItem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIUpDownButton.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Controls\tk2dUIUpDownHoverButton.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUIAudioManager.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUICamera.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUIItem.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUILayout.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUILayoutContainer.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUILayoutContainerSizer.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUIManager.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUIMask.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUISpriteAnimator.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUITime.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI\UICode\Core\tk2dUITouch.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI_demo\tk2dUIBaseDemoController.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI_demo\tk2dUIDemo2Controller.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI_demo\tk2dUIDemo3Controller.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI_demo\tk2dUIDemo5Controller.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI_demo\tk2dUIDemo6Controller.cs" />
+     <Compile Include="Assets\TK2DROOT\tk2dUI_demo\tk2dUIDemoController.cs" />
+     <None Include="Assets\Atlas\Font\FontHeader.fnt" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\LitSolidVertexColor.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Goodies\TexturePacker\Exporter\2dtoolkit\exporter.xml" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\SolidVertexColor.shader" />
+     <None Include="Assets\TK2DROOT\tk2dUI\Shaders\DepthMask.shader" />
+     <None Include="Assets\Destructible2D\Examples\Shaders\Destructible2D-Gradient.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\LitPremulVertexColor.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\PremulVertexColor.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\goodies\PackedTextMesh.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\Blend2TexVertexColor.shader" />
+     <None Include="Assets\Destructible2D\Required\Shaders\Sprites-Outline (Destructible 2D).shader" />
+     <None Include="Assets\TK2DROOT\tk2dUI\Shaders\DepthMaskSolid.shader" />
+     <None Include="Assets\Destructible2D\Required\Shaders\Sprites-Default (Destructible 2D).shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\resources\BlendVertexColor.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\LitCutoutVertexColor.shader" />
+     <None Include="Assets\Destructible2D\Required\Shaders\Sprites-Keep Alpha (Destructible 2D).shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Editor\EditorUtility.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\CutoutVertexColor.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\LitBlendVertexColor.shader" />
+     <None Include="Assets\Destructible2D\Examples\Shaders\Destructible2D-VertexColours.shader" />
+     <None Include="Assets\TK2DROOT\tk2d\Shaders\AdditiveVertexColor.shader" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
