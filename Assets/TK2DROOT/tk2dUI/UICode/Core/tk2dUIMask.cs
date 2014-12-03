@@ -79,9 +79,9 @@ public class tk2dUIMask : MonoBehaviour {
 			anchorOffset + new Vector3( size.x,  size.y, -depth)
 		};
 
-		mesh.vertices = positions;
-		mesh.uv = uv;
-		mesh.triangles = indices;
+		//mesh.vertices = positions;
+		//mesh.uv = uv;
+		//mesh.triangles = indices;
 		
 		// Recalculate bounds, and reset bounds center, i.e. determining draw order for
 		// transparent sprites

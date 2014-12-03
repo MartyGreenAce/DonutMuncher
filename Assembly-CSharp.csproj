@@ -46,32 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_CacheTextures.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ClickToSpawn.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ClickToStamp.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DamageOnCollision.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DemoGUI.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DestroyAfterTime.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DestroyWithFixture.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DragToShoot.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_DragToSlice.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Follow.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ImpartVelocity.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_MothershipCore.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_MothershipThruster.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ReplaceOnCollision.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_ReplaceOnTrigger.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_SpawnOnCollision.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Spectator.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_SplitLimiter.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_SwayWithFixture.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Tooltip.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownCar.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownGun.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownSpaceship.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownThruster.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_TopDownWheel.cs" />
-     <Compile Include="Assets\Destructible2D\Examples\Scripts\D2D_Water.cs" />
      <Compile Include="Assets\Destructible2D\Required\Library\D2D_AlphaTex.cs" />
      <Compile Include="Assets\Destructible2D\Required\Library\D2D_ClassPool.cs" />
      <Compile Include="Assets\Destructible2D\Required\Library\D2D_ColliderBuilder.cs" />
@@ -102,12 +76,23 @@
      <Compile Include="Assets\Destructible2D\Required\Player\D2D_Splittable.cs" />
      <Compile Include="Assets\Destructible2D\Required\Player\D2D_SpriteCollider.cs" />
      <Compile Include="Assets\Destructible2D\Required\Player\D2D_SwappableSprite.cs" />
+     <Compile Include="Assets\Scripts\Logic\AnimateFadeInSprite.cs" />
+     <Compile Include="Assets\Scripts\Logic\AnimateFadeInTextMesh.cs" />
+     <Compile Include="Assets\Scripts\Logic\CharacterData.cs" />
+     <Compile Include="Assets\Scripts\Logic\Cloud.cs" />
+     <Compile Include="Assets\Scripts\Logic\CloudManager.cs" />
      <Compile Include="Assets\Scripts\Logic\GameManager.cs" />
      <Compile Include="Assets\Scripts\Logic\Player.cs" />
+     <Compile Include="Assets\Scripts\Logic\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Logic\Spin.cs" />
-     <Compile Include="Assets\Scripts\Utilities\ButtonClickScaler.cs" />
-     <Compile Include="Assets\Scripts\Utilities\ButtonGoToScene.cs" />
-     <Compile Include="Assets\Scripts\Utilities\ButtonHandler.cs" />
+     <Compile Include="Assets\Scripts\Menu\ButtonCharacterChange.cs" />
+     <Compile Include="Assets\Scripts\Menu\ButtonClickScaler.cs" />
+     <Compile Include="Assets\Scripts\Menu\ButtonGoToScene.cs" />
+     <Compile Include="Assets\Scripts\Menu\ButtonHandler.cs" />
+     <Compile Include="Assets\Scripts\Utilities\AnimateScale.cs" />
+     <Compile Include="Assets\Scripts\Utilities\CircleProgressBar.cs" />
+     <Compile Include="Assets\Scripts\Utilities\DestroyTime.cs" />
+     <Compile Include="Assets\Scripts\Utilities\RaycastManager.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Camera\tk2dCamera.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Camera\tk2dCameraAnchor.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\BaseCode\Camera\tk2dCameraUtil.cs" />
@@ -185,7 +170,6 @@
      <None Include="Assets\TK2DROOT\tk2d\Goodies\TexturePacker\Exporter\2dtoolkit\exporter.xml" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\SolidVertexColor.shader" />
      <None Include="Assets\TK2DROOT\tk2dUI\Shaders\DepthMask.shader" />
-     <None Include="Assets\Destructible2D\Examples\Shaders\Destructible2D-Gradient.shader" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\LitPremulVertexColor.shader" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\PremulVertexColor.shader" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\goodies\PackedTextMesh.shader" />
@@ -199,7 +183,7 @@
      <None Include="Assets\TK2DROOT\tk2d\Editor\EditorUtility.shader" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\CutoutVertexColor.shader" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\LitBlendVertexColor.shader" />
-     <None Include="Assets\Destructible2D\Examples\Shaders\Destructible2D-VertexColours.shader" />
+     <None Include="Assets\Resources\characters.txt" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\AdditiveVertexColor.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour 
 {
@@ -12,72 +13,120 @@ public class Player : MonoBehaviour
 	};
 		
 	public CharacterStates currentCharacterState = CharacterStates.Idle;
-		
+    
+	//Point where the eat location is
 	public Transform eatPoint;
-	public Transform foodPoint;
+    
+    [System.Serializable] 
+    public class Character
+    {
+        public int hairID;
+        public int mouthID;
+        public int eyeID;
+        public int bodyID;
+        public Color characterColour;
+    }
+    
+	[HideInInspector]
+	public List<Character> characters = new List<Character>();
 	
-	public tk2dSpriteAnimator playerSprite;
+	//Changing sprites dynamically (animation)
+	public tk2dSprite playerArmLegs;
+	public tk2dSprite playerHair;
+    public tk2dSprite playerMouth;
+    public tk2dSprite playerEyes;
+    public tk2dSprite playerBody;
 		
-	public float trampLenght;
+	//Lerp length for jumping/idling
+	public float idleLenght;
 	public float flyLength;
 		
-	public Transform trampolineIdle0;
-	public Transform trampolineIdle1;
-	private double trampolineTime;
+	//Idle points that it lerps between
+	public Transform idle0;
+	public Transform idle1;
+		
+	//Track bouncing on idle
 	private bool isBouncingUp = false;
+	private Vector3 lastIdlePosition;
 		
-	private Vector3 lastTrampPosition;
+	//Keep track of time for lerping
+	private double idleTime;
 	private double flyTime;
-		
 	private double lastBiteTime;
+    
+	[HideInInspector]
+	public int currentCharacterID;
 		
 	void Start () 
 	{
+        ChangeCharacter(0);
 	}
+		
+    public void ChangeCharacter(int characterID)
+    {
+        currentCharacterID = characterID;
+        
+        playerEyes.SetSprite("eyes" + characters[characterID].eyeID.ToString());
+        playerBody.SetSprite("body" + characters[characterID].bodyID.ToString());
+        playerHair.SetSprite("haircut" + characters[characterID].hairID.ToString() + "_0"); 
+        playerMouth.SetSprite("mouth" + characters[characterID].mouthID.ToString() + "_open"); 
+        
+        playerBody.color = characters[characterID].characterColour;
+        playerArmLegs.color = characters[characterID].characterColour;
+    }
 		
 	void Update () 
 	{
 		switch (currentCharacterState)
 		{
 			case CharacterStates.Idle:
-				double timeSince = (Time.time - trampolineTime);
+				double timeSince = (Time.time - idleTime);
 						
 				if (!isBouncingUp)
 				{
 					//Check if is at end location yet
-					if (timeSince < trampLenght)
+					if (timeSince < idleLenght)
 					{
 						//Lerp using time based on [0, 1]
-						transform.position = Vector3.Lerp(trampolineIdle0.position, trampolineIdle1.position, (float)timeSince / trampLenght);
+						transform.position = Vector3.Lerp(idle0.position, idle1.position, (float)timeSince / idleLenght);
 					}
 					else
 					{
-						trampolineTime = Time.time;				
+						idleTime = Time.time;				
 						isBouncingUp = true;
 					}
 				}
 				else
 				{				
 					//Check if is at start location yet
-					if (timeSince < trampLenght)
+					if (timeSince < idleLenght)
 					{
 						//Lerp using time based on [0, 1]
-						transform.position = Vector3.Lerp(trampolineIdle1.position, trampolineIdle0.position, (float)timeSince / (trampLenght * 0.6f));
+						transform.position = Vector3.Lerp(idle1.position, idle0.position, (float)timeSince / (idleLenght * 0.6f));
 					}				
 					else
 					{
-						trampolineTime = Time.time;	
+						idleTime = Time.time;	
 						isBouncingUp = false;
 					}
 				}
-						
-				if (Input.GetMouseButtonDown(0))
+
+                //Jump towards the donut
+				if (GameManager.Instance().currentGameState == GameManager.GameStates.Game &&
+					!RaycastManager.Instance().DidHitMenuButton())
 				{
-					currentCharacterState = CharacterStates.GoingTowardsFood;
-					lastTrampPosition = transform.position;
-					flyTime = Time.time;
-								
-					playerSprite.Play("bite");
+					if (Input.GetMouseButtonDown(0))
+					{
+                        //Set jump properties
+						currentCharacterState = CharacterStates.GoingTowardsFood;
+						lastIdlePosition = transform.position;
+						flyTime = Time.time;
+										
+                        //Set hair to down and bite
+                        playerHair.SetSprite("haircut" + characters[currentCharacterID].hairID.ToString() + "_0");	
+                        playerMouth.SetSprite("mouth" + characters[currentCharacterID].mouthID.ToString() + "_open"); 
+                        playerArmLegs.SetSprite("armLegDown");
+					}
 				}
 			break;
 						
@@ -88,15 +137,20 @@ public class Player : MonoBehaviour
 				if (timeSinceFly < flyLength)
 				{
 					//Lerp using time based on [0, 1]
-					transform.position = Vector3.Lerp(trampolineIdle0.position, eatPoint.position, (float)timeSinceFly / flyLength);
+					transform.position = Vector3.Lerp(idle0.position, eatPoint.position, (float)timeSinceFly / flyLength);
 				}
 				else
 				{
+                    //Set fall properties
 					currentCharacterState = CharacterStates.ComingBackToTrampoline;
-					lastTrampPosition = transform.position;
+					lastIdlePosition = transform.position;
 					flyTime = Time.time;
-								
-					trampolineTime = Time.time;				
+					idleTime = Time.time; 
+                    
+					//Set hair to down and falling			
+                    playerHair.SetSprite("haircut" + characters[currentCharacterID].hairID.ToString() + "_1");
+                    playerMouth.SetSprite("mouth" + characters[currentCharacterID].mouthID.ToString() + "_close"); 
+                    playerArmLegs.SetSprite("armLegUp");		
 				}
 			break;
 						
@@ -107,30 +161,44 @@ public class Player : MonoBehaviour
 				if (timeSinceFlyBack < flyLength)
 				{
 					//Lerp using time based on [0, 1]
-					transform.position = Vector3.Lerp(lastTrampPosition, trampolineIdle0.position, (float)timeSinceFlyBack / flyLength);
+					transform.position = Vector3.Lerp(lastIdlePosition, idle0.position, (float)timeSinceFlyBack / flyLength);
 				}
 				else
 				{
+                    //Set to idle
 					currentCharacterState = CharacterStates.Idle;
-					trampolineTime = Time.time;	
+					idleTime = Time.time;	
 					isBouncingUp = false;		
 								
-					playerSprite.Play("idle");
+                    //Set hair to down and idle   
+                    playerHair.SetSprite("haircut" + characters[currentCharacterID].hairID.ToString() + "_0"); 
+                    playerMouth.SetSprite("mouth" + characters[currentCharacterID].mouthID.ToString() + "_open"); 
+                    playerArmLegs.SetSprite("armLegDown");
 				}
 			break;
 		}
 	}
 		
+    //Once has bitten the donut will fall back down
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		//Stops user from biting alot or taking big chunk
 		if (Time.time - lastBiteTime > 0.2f)
 		{				
 			lastBiteTime = Time.time;
+						
+			//Spawn bite so it removes bite from the destrucible object
 			GameObject biteSmall = (GameObject)Instantiate(Resources.Load("BiteSmall"));	
 			biteSmall.transform.position = eatPoint.position;
-		
+
+            //Set hair to up and fall          
+            playerHair.SetSprite("haircut" + characters[currentCharacterID].hairID.ToString() + "_1"); 
+            playerMouth.SetSprite("mouth" + characters[currentCharacterID].mouthID.ToString() + "_close"); 
+            playerArmLegs.SetSprite("armLegUp");
+						
+            //Set to falling
 			currentCharacterState = CharacterStates.ComingBackToTrampoline;
-			lastTrampPosition = transform.position;
+			lastIdlePosition = transform.position;
 			flyTime = Time.time;
 		}
 	}

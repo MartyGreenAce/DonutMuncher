@@ -3,66 +3,182 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour 
 {
-	public D2D_DestructibleSprite foodDestrucible;
-	public Transform foodParent;
-		
-	public tk2dTextMesh bestScoreText;
-	public tk2dTextMesh scoreText;
-	private int currentScore;
-		
-	public string [] foodPrefabs;
-		
-	public float donutCompleteTime = 10;
-	public tk2dUIProgressBar mainTimerProgress;
-	public double mainTimer;
-		
-	void Start () 
+	public static GameManager managerInstance;
+	
+	public static GameManager Instance()
 	{
-		bestScoreText.text = "Best " + System.Environment.NewLine + PlayerPrefs.GetInt("BestScore").ToString();
+		if (managerInstance == null)
+		{
+			Debug.LogError("Havn't Assigned GameManager");
+		}
+		
+		return managerInstance;
+	}
+		
+	public enum GameStates
+	{
+        Title,
+		Game,
+		GameOver
+	};
+		
+	public GameStates currentGameState = GameStates.GameOver;
+		
+    //Systems
+	public ScoreManager scoreManager;
+	public Spin spinFood;
+    
+    //Food properties
+    public Transform foodParent;
+    private D2D_DestructibleSprite foodDestrucible;
+    
+    //Game timer progress
+    public CircleProgressBar circleProgressBar;
+    
+    //Buttons etc
+	public AnimateFadeInTextMesh [] fadeTexts;
+	public AnimateFadeInSprite [] fadeSprites;
+		
+    //Game timer
+    public float donutCompleteTime = 10;
+    
+    //Sky backdrop colours
+	public Color [] backgroundColours;
+    
+    //Food prefab names
+	public string [] foodPrefabs;
+    
+    //Game timer storing
+	public double mainTimer;
+	private double timeSinceLost;
+		
+	void Awake ()
+	{
+		managerInstance = this;	
 	}
 	
-	void Update () 
+	void Start () 
+	{	
+        AddFood(false);
+		UpdateFadeButtons(true, false);
+	}
+		
+	void UpdateFadeButtons(bool activateFade, bool fadeState)
 	{
-		float timeRemaining = (float)(Time.time - mainTimer) / donutCompleteTime;
-		mainTimerProgress.Value = 1 - timeRemaining;		
-	
-		if (timeRemaining > 1)
+		for (int i = 0; i < fadeTexts.Length; ++i)
 		{
-			//Check if score is a new high score
-			if (currentScore > PlayerPrefs.GetInt("BestScore"))
+			//Fade in the UI buttons
+			if (activateFade)
 			{
-				//Save new high score & update UI
-				PlayerPrefs.SetInt("BestScore", currentScore);
-				bestScoreText.text = "Best " + System.Environment.NewLine + currentScore;
-			}
+				fadeTexts[i].ActivateFade(fadeState);
+            }
 						
-			Destroy(foodDestrucible.gameObject);
-						
-			GameObject food = (GameObject)Instantiate(Resources.Load("Foods/" + foodPrefabs[Random.Range(0, foodPrefabs.Length)]));
-			food.transform.parent = foodParent;
-			food.transform.localPosition = Vector3.zero;
-			foodDestrucible = food.GetComponent<D2D_DestructibleSprite>();
-						
-			mainTimer = Time.time;
-			currentScore = 0;
-			scoreText.text = currentScore.ToString();
+			//Enable colliders so can press them
+            if (fadeTexts[i].collider != null)
+                fadeTexts[i].collider.enabled = !fadeState;
 		}
 				
-		if (foodDestrucible.SolidPixelRatio < 0.006f)
+		for (int i = 0; i < fadeSprites.Length; ++i)
 		{
-			mainTimer = Time.time;
-			
-			currentScore++;
-			scoreText.text = currentScore.ToString();
-								
-			Destroy(foodDestrucible.gameObject);
+			//Fade in the UI buttons
+			if (activateFade)
+			{
+				fadeSprites[i].ActivateFade(fadeState);
+            }
 						
-			GameObject food = (GameObject)Instantiate(Resources.Load("Foods/" + foodPrefabs[Random.Range(0, foodPrefabs.Length)]));
-			food.transform.parent = foodParent;
-			food.transform.localPosition = Vector3.zero;
-			foodDestrucible = food.GetComponent<D2D_DestructibleSprite>();
+			//Enable colliders so can press them
+            if (fadeSprites[i].collider != null)
+                fadeSprites[i].collider.enabled = !fadeState;
 		}
-				
-		//foodPercentage.text = ((1 - foodDestrucible.SolidPixelRatio) * 100).ToString("F") + "%";
+	}
+    
+    void StartGame()
+    {
+        currentGameState = GameStates.Game;
+        mainTimer = Time.time;  
+        scoreManager.ResetScore();
+        
+        UpdateFadeButtons(true, true);
+        
+        Resources.UnloadUnusedAssets();
+    }
+    
+    void EndGame()
+    {
+        spinFood.ResetSpeed();
+        scoreManager.SaveScore();
+        timeSinceLost = Time.time;
+        mainTimer = Time.time;
+        currentGameState = GameStates.GameOver;
+        
+        UpdateFadeButtons(true, false);
+        
+        //Change to a new sky colour
+        Camera.main.backgroundColor = backgroundColours[Random.Range(0, backgroundColours.Length)];
+    }
+
+    void NextFood()
+    {
+        mainTimer = Time.time;           
+        scoreManager.AddScore();
+        spinFood.UpdateSpeed();
+                     
+        //Create particle when completed food
+        GameObject foodParticle = (GameObject)Instantiate(Resources.Load("NewFoodParticle"));
+        foodParticle.transform.position = foodParent.position;
+                    
+        //Spawn next food object
+        AddFood(true);
+    }
+    
+    void AddFood(bool destroyFirst)
+    {
+        if (destroyFirst)
+            Destroy(foodDestrucible.gameObject);
+
+        GameObject food = (GameObject)Instantiate(Resources.Load("Foods/" + foodPrefabs[Random.Range(0, foodPrefabs.Length)]));
+        food.transform.parent = foodParent;
+        food.transform.localPosition = Vector3.zero;
+        foodDestrucible = food.GetComponent<D2D_DestructibleSprite>();
+    }
+	
+	void Update () 
+	{			
+		if (currentGameState == GameStates.GameOver)
+		{
+			if (Input.GetMouseButtonDown(0) && 
+				Time.time - timeSinceLost > 1 &&
+				!RaycastManager.Instance().DidHitMenuButton())
+			{
+				StartGame();
+			}
+		}
+        else if (currentGameState == GameStates.Title)
+        {
+            if (Input.GetMouseButtonDown(0) &&
+				!RaycastManager.Instance().DidHitMenuButton())
+            {
+                StartGame();
+            }
+        }
+		else if (currentGameState == GameStates.Game)
+		{
+			float timeRemaining = (float)(Time.time - mainTimer) / donutCompleteTime;
+            
+            //Update progress bar [0, 1]
+            circleProgressBar.UpdateProgress(1 - timeRemaining);	
+
+            //If time runs out then end game
+			if (timeRemaining > 1)
+			{
+                EndGame();
+			}
+					
+            //If has destroyed all food then create next food
+			if (foodDestrucible.SolidPixelRatio < 0.002f)
+			{
+				NextFood();
+			}
+		}
 	}
 }
