@@ -138,6 +138,9 @@ public class Player : MonoBehaviour
 				{
 					//Lerp using time based on [0, 1]
 					transform.position = Vector3.Lerp(idle0.position, eatPoint.position, (float)timeSinceFly / flyLength);
+					transform.localScale = Vector3.Lerp(new Vector3(2.25f, 2.25f, 2.25f), 
+														new Vector3(1.25f, 1.25f, 1.25f), 
+														(float)timeSinceFly / flyLength);	
 				}
 				else
 				{
@@ -162,6 +165,9 @@ public class Player : MonoBehaviour
 				{
 					//Lerp using time based on [0, 1]
 					transform.position = Vector3.Lerp(lastIdlePosition, idle0.position, (float)timeSinceFlyBack / flyLength);
+					transform.localScale = Vector3.Lerp(new Vector3(1.25f, 1.25f, 1.25f),
+														new Vector3(2.25f, 2.25f, 2.25f),
+														(float)timeSinceFlyBack / flyLength);	
 				}
 				else
 				{
