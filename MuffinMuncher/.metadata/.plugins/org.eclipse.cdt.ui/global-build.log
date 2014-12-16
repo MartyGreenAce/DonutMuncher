@@ -1,0 +1,41 @@
+16:40:57 **** Build of configuration Release for project proj.android ****
+python /Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android/build_native.py -b release all 
+We will remove this script next version,you should use cocos console to build android project.
+
+NDK_ROOT not defined. Please define NDK_ROOT in your environment
+16:41:52 **** Incremental Build of configuration Release for project proj.android ****
+python /Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android/build_native.py -b release all 
+Android NDK: WARNING: APP_PLATFORM android-21 is larger than android:minSdkVersion 9 in ./AndroidManifest.xml    
+make: Entering directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+[armeabi] Install        : libcocos2dcpp.so => libs/armeabi/libcocos2dcpp.so
+make: Leaving directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+We will remove this script next version,you should use cocos console to build android project.
+
+The Selected NDK toolchain version was 4.9 !
+16:42:37 **** Incremental Build of configuration Release for project proj.android ****
+python /Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android/build_native.py -b release all 
+Android NDK: WARNING: APP_PLATFORM android-21 is larger than android:minSdkVersion 9 in ./AndroidManifest.xml    
+make: Entering directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+[armeabi] Install        : libcocos2dcpp.so => libs/armeabi/libcocos2dcpp.so
+make: Leaving directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+We will remove this script next version,you should use cocos console to build android project.
+
+The Selected NDK toolchain version was 4.9 !
+16:43:26 **** Clean-only build of configuration Release for project proj.android ****
+python /Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android/build_native.py -b release clean 
+Android NDK: WARNING: APP_PLATFORM android-21 is larger than android:minSdkVersion 9 in ./AndroidManifest.xml    
+make: Entering directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+[armeabi] Install        : libcocos2dcpp.so => libs/armeabi/libcocos2dcpp.so
+make: Leaving directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+We will remove this script next version,you should use cocos console to build android project.
+
+The Selected NDK toolchain version was 4.9 !
+16:43:32 **** Build of configuration Release for project proj.android ****
+python /Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android/build_native.py -b release all 
+Android NDK: WARNING: APP_PLATFORM android-21 is larger than android:minSdkVersion 9 in ./AndroidManifest.xml    
+make: Entering directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+[armeabi] Install        : libcocos2dcpp.so => libs/armeabi/libcocos2dcpp.so
+make: Leaving directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
+We will remove this script next version,you should use cocos console to build android project.
+
+The Selected NDK toolchain version was 4.9 !
