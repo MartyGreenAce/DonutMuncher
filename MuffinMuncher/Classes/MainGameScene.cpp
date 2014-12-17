@@ -27,19 +27,25 @@ bool MainGameScene::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
+    cocos2d::Sprite* skySprite = cocos2d::Sprite::create("Sprites/sky.png");
+    skySprite->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+    skySprite->setScale(1.5f);
+    this->addChild(skySprite, 0);
+
     //Setup level backdrop
     SpriteBatchNode* spritebatch = SpriteBatchNode::create("Atlases/backdrop.png");
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("Atlases/backdrop.plist");
 
     //Create backdrop
-    this->addScenery(Vec2(visibleSize.width/2, 0), "backdrop.png", spritebatch, 0);
-    this->addScenery(Vec2(visibleSize.width/2, 0), "backdrop2.png", spritebatch, 1);
-    this->addScenery(Vec2(visibleSize.width/2, 0), "backdrop3.png", spritebatch, 2);
+    this->addScenery(Vec2(visibleSize.width/2, 100), "backdrop.png", spritebatch, 1);
+    this->addScenery(Vec2(visibleSize.width/2, 0), "backdrop2.png", spritebatch, 2);
+    this->addScenery(Vec2(visibleSize.width/2, 0), "backdrop3.png", spritebatch, 3);
+    this->addScenery(Vec2(visibleSize.width/2, visibleSize.height - 340), "stars.png", spritebatch, 2);
     this->addChild(spritebatch);
 
-    foodNode = foodSpawner.spawnFood(this);
-    character.createCharacter(this);
+    foodSpawner.spawnFood(this);
+    character.createCharacter(this, foodSpawner);
 
     //Register Touch Event
     auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -54,9 +60,8 @@ bool MainGameScene::init()
 
 void MainGameScene::update(float delta)
 {
-	float spinSpeed = 75;
-	foodNode->setRotation(foodNode->getRotation() + (delta * spinSpeed));
-	character.updateCharacter(delta);
+	foodSpawner.updateFood(delta);
+	character.updateCharacter(delta, foodSpawner);
 }
 
 bool MainGameScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
@@ -76,7 +81,7 @@ void MainGameScene::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 void MainGameScene::addScenery(Vec2 backPos, std::string imageName, SpriteBatchNode* spriteBatch, int spriteDepth)
 {
 	Sprite *sprite = Sprite::createWithSpriteFrameName(imageName);
-    float spriteScale = 2;
+    float spriteScale = 1.15f;
     Size spriteSize = sprite->getSpriteFrame()->getOriginalSizeInPixels();
     sprite->setPosition(backPos + Vec2(0, (spriteSize.height * spriteScale) / 2));
     sprite->setScale(spriteScale, spriteScale);

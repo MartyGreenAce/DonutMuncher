@@ -28,7 +28,6 @@ public:
 private:
    	FoodSpawner foodSpawner;
    	Character character;
-   	SpriteBatchNode* foodNode;
 
    	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
    	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);

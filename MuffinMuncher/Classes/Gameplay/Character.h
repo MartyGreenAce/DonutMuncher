@@ -2,6 +2,7 @@
 #define __CHARACTER_H__
 
 #include "cocos2d.h"
+#include "FoodSpawner.h"
 
 USING_NS_CC;
 
@@ -15,8 +16,8 @@ public:
 		FALL
 	};
 
-	void createCharacter(cocos2d::Layer *layerToSpawn);
-	void updateCharacter(float deltaTime);
+	void createCharacter(cocos2d::Layer *layerToSpawn, FoodSpawner &foodSpawner);
+	void updateCharacter(float deltaTime, FoodSpawner &foodSpawner);
 	void clickedScreen();
 	void setState(CharacterStates newState);
 

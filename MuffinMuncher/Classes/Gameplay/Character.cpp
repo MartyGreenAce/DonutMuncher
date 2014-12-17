@@ -7,7 +7,7 @@
 
 USING_NS_CC;
 
-void Character::createCharacter(cocos2d::Layer *layerToSpawn)
+void Character::createCharacter(cocos2d::Layer *layerToSpawn, FoodSpawner &foodSpawner)
 {
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     characterBatch = SpriteBatchNode::create("Atlases/characters.png");
@@ -68,7 +68,7 @@ void Character::createCharacter(cocos2d::Layer *layerToSpawn)
 	idle1Pos = Vec2(visibleSize.width/2, -visibleSize.height/6);
 
 	//Set eatpoint
-	eatPoint = Vec2(visibleSize.width/2, visibleSize.height);
+	eatPoint = Vec2(visibleSize.width/2, visibleSize.height - (foodSpawner.offsetFromCenter*2));
 }
 
 void Character::clickedScreen()
@@ -82,7 +82,7 @@ void Character::clickedScreen()
 	}
 }
 
-void Character::updateCharacter(float deltaTime)
+void Character::updateCharacter(float deltaTime, FoodSpawner &foodSpawner)
 {
 	currentTime += deltaTime;
 
@@ -141,6 +141,9 @@ void Character::updateCharacter(float deltaTime)
 			}
 			else
 			{
+				Vec2 mouthPosWorld = characterBatch->getPosition();
+				foodSpawner.grabFood(mouthPosWorld);
+
 				//Set fall properties
 				characterStates = CharacterStates::FALL;
 				lastIdlePosition = characterBatch->getPosition();

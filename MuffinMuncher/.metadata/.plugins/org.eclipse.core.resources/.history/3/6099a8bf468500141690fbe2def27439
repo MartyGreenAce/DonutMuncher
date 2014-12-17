@@ -1,0 +1,40 @@
+// Copyright @ Marty Green 2011
+// -----------------------------
+// The source-code can be copyied, distrubted and modified
+// If you redistrubute the source-code or base your engine off it
+// -----------------------------
+
+// Utilities.hpp/cpp
+// --------------------
+// This file is used for helper methods (math, primitive types etc)
+
+#ifndef HELPER_FUNCS
+#define HELPER_FUNCS
+
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
+namespace UTIL
+{
+	float clamp( float min, float max, float value);
+	float lerp( float p0, float p1, float s);
+
+	//Angles to degrees & radians
+	float radToDeg(float radians);
+	float degToRad(float degrees);
+
+	string numberToDigits(int numberToConvert);
+
+	float percentage(float min, float max, float value);
+	float smoothstep(float min, float max, float time);
+
+	string doubleToString(double num);
+	string intToString(int num);
+	int randomNumber(int min, int max);
+	float randomNumber(float min, float max);
+	std::string stringFromFile(std::string filepath);
+}
+
+#endif

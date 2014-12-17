@@ -8,10 +8,23 @@ USING_NS_CC;
 class FoodSpawner : public cocos2d::Layer
 {
 public:
-	SpriteBatchNode* spawnFood(cocos2d::Layer *layerToSpawn);
+	float offsetFromCenter;
+
+	void spawnFood(cocos2d::Layer *layerToSpawn);
+	void grabFood(Vec2 mouthPos);
+	void updateFood(float delta);
+	void resetFood();
 
 private:
     SpriteBatchNode* foodbatch;
+
+    CCLabelTTF* foodLeftLabel;
+    CCLabelTTF* scoreLabel;
+
+    int score;
+    int foodAmount;
+    int foodLeft;
+    float currentAngle;
 };
 
 #endif

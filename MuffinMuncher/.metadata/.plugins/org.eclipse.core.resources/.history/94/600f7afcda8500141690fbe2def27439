@@ -1,0 +1,123 @@
+// Copyright @ Marty Green 2011
+// -----------------------------
+// The source-code can be copyied, distrubted and modified
+// If you redistrubute the source-code or base your engine off it
+// Please give credit to Marty Green showing a link to http://www.marty-green.co.uk/
+// -----------------------------
+
+#include "Utilities.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <fstream>
+#include <sstream>
+#include <cctype>
+#include <algorithm>
+
+const float pi = 3.1415f;
+
+namespace UTIL
+{
+	float clamp( float min, float max, float value)
+	{
+		if (value < min)
+			return min;
+
+		else if (value > max)
+			return max;
+
+		return value;
+	}
+
+	float lerp( float p0, float p1, float s)
+	{
+		return (p0 + (p1 - p0) * s);
+	}
+
+	float percentage( float min, float max, float value )
+	{
+		return ((value - min) / (max - min));
+	}
+
+	float distance(Vec2 start, Vec2 end)
+	{
+		float xd = end.x - start.x;
+		float yd = end.y - start.y;
+		return sqrt(xd*xd + yd*yd);
+	}
+
+	float smoothstep(float min, float max, float time)
+	{
+		float x = clamp(0, 1, ((time - min) / (max - min)));
+		return (x*x*(3-2*x));
+	}
+
+	float radToDeg(float radians)
+	{
+		return radians * (180/pi); 
+	}
+
+	float degToRad(float degrees)
+	{
+		return degrees * (pi/180);
+	}
+
+	int randomNumber(int min, int max)
+	{
+		return ( arc4random() % (max-min) ) + min;
+	}
+
+	float randomNumber(float min, float max)
+	{
+		return ((max-min)*((float)arc4random()/RAND_MAX))+min;
+	}
+
+	string numberToDigits(int numberToConvert)
+	{
+		string s;
+		int cnt = 0;
+
+	    do
+	    {
+			s.insert(0, 1, char('0' + numberToConvert % 10));
+			numberToConvert /= 10;
+			if (++cnt == 3 && numberToConvert)
+			{
+				s.insert(0, 1, ',');
+				cnt = 0;
+			}
+		} while (numberToConvert);
+
+		return s;
+	}
+
+	string doubleToString(double num)
+	{
+		stringstream ss;
+		ss << num;
+		return ss.str();
+	}
+
+	string intToString(int num)
+	{
+		stringstream ss;
+		ss << num;
+		return ss.str();
+	}
+
+	std::string stringFromFile(std::string filepath)
+	{
+		std::ifstream fp;
+		fp.open(filepath, std::ifstream::in);
+
+		if (fp.is_open() == false) 
+		{
+			return "";
+		}
+
+		std::stringstream ss;
+		ss << fp.rdbuf();
+		return ss.str();
+	}
+}

@@ -14,6 +14,10 @@
 #include <iostream>
 #include <sstream>
 
+#include "cocos2d.h"
+
+USING_NS_CC;
+
 using namespace std;
 
 namespace UTIL
@@ -25,6 +29,8 @@ namespace UTIL
 	float radToDeg(float radians);
 	float degToRad(float degrees);
 
+	float distance(Vec2 start, Vec2 end);
+
 	string numberToDigits(int numberToConvert);
 
 	float percentage(float min, float max, float value);
@@ -35,6 +41,8 @@ namespace UTIL
 	int randomNumber(int min, int max);
 	float randomNumber(float min, float max);
 	std::string stringFromFile(std::string filepath);
+
+	static float PI = 3.1415f;
 }
 
 #endif

@@ -1,0 +1,23 @@
+#ifndef __FOOD_SPAWNER_H__
+#define __FOOD_SPAWNER_H__
+
+#include "cocos2d.h"
+
+USING_NS_CC;
+
+class FoodSpawner : public cocos2d::Layer
+{
+public:
+	float offsetFromCenter;
+
+	void spawnFood(cocos2d::Layer *layerToSpawn);
+	void grabFood(Vec2 mouthPos);
+	void updateFood(float delta);
+
+private:
+    SpriteBatchNode* foodbatch;
+    int foodAmount;
+    Vector<Node*> foodChildren;
+};
+
+#endif

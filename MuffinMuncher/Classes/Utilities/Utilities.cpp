@@ -15,8 +15,6 @@
 #include <cctype>
 #include <algorithm>
 
-const float pi = 3.1415f;
-
 namespace UTIL
 {
 	float clamp( float min, float max, float value)
@@ -40,6 +38,13 @@ namespace UTIL
 		return ((value - min) / (max - min));
 	}
 
+	float distance(Vec2 start, Vec2 end)
+	{
+		float xd = end.x - start.x;
+		float yd = end.y - start.y;
+		return sqrt(xd*xd + yd*yd);
+	}
+
 	float smoothstep(float min, float max, float time)
 	{
 		float x = clamp(0, 1, ((time - min) / (max - min)));
@@ -48,12 +53,12 @@ namespace UTIL
 
 	float radToDeg(float radians)
 	{
-		return radians * (180/pi); 
+		return radians * (180/UTIL::PI);
 	}
 
 	float degToRad(float degrees)
 	{
-		return degrees * (pi/180);
+		return degrees * (UTIL::PI/180);
 	}
 
 	int randomNumber(int min, int max)

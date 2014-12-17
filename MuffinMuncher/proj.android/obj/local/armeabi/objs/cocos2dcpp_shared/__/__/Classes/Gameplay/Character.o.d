@@ -354,6 +354,7 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/Gameplay/Character.o: \
  jni/../../cocos2d/cocos/3d/../deprecated/CCString.h \
  jni/../../cocos2d/cocos/3d/../deprecated/CCNotificationCenter.h \
  jni/../../cocos2d/cocos/3d/../deprecated/CCDeprecated.h \
+ jni/../../Classes/Gameplay/FoodSpawner.h \
  jni/../../Classes/Utilities/Utilities.h \
  /Users/martygreen/Documents/android-ndk-r10c/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream
 
@@ -1064,6 +1065,8 @@ jni/../../cocos2d/cocos/3d/../deprecated/CCString.h:
 jni/../../cocos2d/cocos/3d/../deprecated/CCNotificationCenter.h:
 
 jni/../../cocos2d/cocos/3d/../deprecated/CCDeprecated.h:
+
+jni/../../Classes/Gameplay/FoodSpawner.h:
 
 jni/../../Classes/Utilities/Utilities.h:
 
