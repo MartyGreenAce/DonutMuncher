@@ -1,18 +1,8 @@
-13:20:23 **** Incremental Build of configuration Release for project proj.android ****
+15:25:57 **** Incremental Build of configuration Release for project proj.android ****
 python /Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android/build_native.py -b release all 
 Android NDK: WARNING: APP_PLATFORM android-21 is larger than android:minSdkVersion 9 in ./AndroidManifest.xml    
 make: Entering directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
-[armeabi] Compile++ thumb: cocos2dcpp_shared <= Character.cpp
-In file included from jni/../../Classes/Gameplay/Character.h:5:0,
-                 from jni/../../Classes/Gameplay/Character.cpp:1:
-jni/../../Classes/Gameplay/FoodSpawner.h:21:17: warning: 'LabelTTF' is deprecated (declared at jni/../../cocos2d/cocos/3d/../2d/CCLabelTTF.h:66) [-Wdeprecated-declarations]
-     CCLabelTTF* foodLeftLabel;
-                 ^
-jni/../../Classes/Gameplay/FoodSpawner.h:22:17: warning: 'LabelTTF' is deprecated (declared at jni/../../cocos2d/cocos/3d/../2d/CCLabelTTF.h:66) [-Wdeprecated-declarations]
-     CCLabelTTF* scoreLabel;
-                 ^
-cc1plus: warning: unrecognized command line option "-Wno-extern-c-compat"
-cc1plus: warning: unrecognized command line option "-Wno-extern-c-compat"
+[armeabi] Compile++ thumb: cocos2dcpp_shared <= FoodSpawner.cpp
 [armeabi] SharedLibrary  : libcocos2dcpp.so
 [armeabi] Install        : libcocos2dcpp.so => libs/armeabi/libcocos2dcpp.so
 make: Leaving directory `/Users/martygreen/Documents/CocosProjects/DonutMuncher/MuffinMuncher/proj.android'
@@ -20,5 +10,5 @@ We will remove this script next version,you should use cocos console to build an
 
 The Selected NDK toolchain version was 4.9 !
 
-13:20:30 Build Finished (took 7s.393ms)
+15:26:04 Build Finished (took 7s.453ms)
 

@@ -1,0 +1,29 @@
+#ifndef __FOOD_SPAWNER_H__
+#define __FOOD_SPAWNER_H__
+
+#include "cocos2d.h"
+#include "ProgressBars.h"
+#include "MainGameScene.h"
+
+USING_NS_CC;
+
+class FoodSpawner : public cocos2d::Layer
+{
+public:
+	float offsetFromCenter;
+
+	void spawnFood(cocos2d::Layer *layerToSpawn, ProgressBars *progress);
+	void grabFood(Vec2 mouthPos);
+	void updateFood(float delta);
+	void resetFood();
+
+private:
+    SpriteBatchNode* foodbatch;
+    ProgressBars *progressBar;
+    MainGameScene *mainGame;
+
+    int foodAmount;
+    float currentAngle;
+};
+
+#endif

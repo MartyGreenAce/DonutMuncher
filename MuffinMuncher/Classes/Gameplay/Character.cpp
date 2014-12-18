@@ -13,35 +13,43 @@ void Character::createCharacter(cocos2d::Layer *layerToSpawn, FoodSpawner &foodS
     characterBatch = SpriteBatchNode::create("Atlases/characters.png");
     cache->addSpriteFramesWithFile("Atlases/characters.plist");
 
+    bodyID.push_back(3);
+	hairID.push_back(2);
+	eyeID.push_back(1);
+	mouthID.push_back(0);
+
+    currentCharacterID = 0;
+
     //BodyID
-	std::ostringstream bodyID;
-	bodyID << 0;
+	std::ostringstream bodyIDStr;
+	bodyIDStr << bodyID.at(currentCharacterID);
 
     //EyeID
-	std::ostringstream eyeID;
-	eyeID << 0;
+	std::ostringstream eyeIDStr;
+	eyeIDStr << eyeID.at(currentCharacterID);
 
 	 //HairID
-	std::ostringstream hairID;
-	hairID << 0;
+	std::ostringstream hairIDStr;
+	hairIDStr << hairID.at(currentCharacterID);
 
 	 //MouthID
-	std::ostringstream mouthID;
-	mouthID << 0;
+	std::ostringstream mouthIDStr;
+	mouthIDStr << mouthID.at(currentCharacterID);
 
-	body = Sprite::createWithSpriteFrameName("body" + bodyID.str() + ".png");
+	body = Sprite::createWithSpriteFrameName("body" + bodyIDStr.str() + ".png");
 	body->setPosition(Vec2(0, 0));
 	characterBatch->addChild(body, 10);
 
-	eyes = Sprite::createWithSpriteFrameName("eyes" + eyeID.str() + ".png");
+	eyes = Sprite::createWithSpriteFrameName("eyes" + eyeIDStr.str() + ".png");
 	eyes->setPosition(Vec2(0, 64));
 	characterBatch->addChild(eyes, 11);
 
-	hair = Sprite::createWithSpriteFrameName("haircut" + hairID.str() + "_0.png");
-	hair->setPosition(Vec2(0, 134));
-	characterBatch->addChild(hair, 12);
+	hair = Sprite::createWithSpriteFrameName("haircut" + hairIDStr.str() + "_0.png");
+	hair->setPosition(Vec2(0, 96));
+	hair->setScale(1.06f);
+	characterBatch->addChild(hair, 14);
 
-	mouth = Sprite::createWithSpriteFrameName("mouth" + mouthID.str() + "_open.png");
+	mouth = Sprite::createWithSpriteFrameName("mouth" + mouthIDStr.str() + "_open.png");
 	mouth->setPosition(Vec2(0, 54));
 	characterBatch->addChild(mouth, 13);
 
@@ -59,16 +67,18 @@ void Character::createCharacter(cocos2d::Layer *layerToSpawn, FoodSpawner &foodS
     currentTime = 0;
     characterStates = CharacterStates::IDLE;
 
+    updateHair();
+
 	//Lerp length for jumping/idling
 	idleLenght = 0.4f;
 	flyLength = 0.35f;
 
 	//Idle points that it lerps between
 	idle0Pos = Vec2(visibleSize.width/2, 0);
-	idle1Pos = Vec2(visibleSize.width/2, -visibleSize.height/6);
+	idle1Pos = Vec2(visibleSize.width/2, -64);
 
 	//Set eatpoint
-	eatPoint = Vec2(visibleSize.width/2, visibleSize.height - (foodSpawner.offsetFromCenter*2));
+	eatPoint = Vec2(visibleSize.width/2, visibleSize.height - (foodSpawner.offsetFromCenter/2));
 }
 
 void Character::clickedScreen()
@@ -79,6 +89,40 @@ void Character::clickedScreen()
 		characterStates = CharacterStates::JUMP;
 		lastIdlePosition = characterBatch->getPosition();
 		flyTime = currentTime;
+
+		hair->setSpriteFrame("haircut" + UTIL::intToString(hairID.at(currentCharacterID)) + "_0.png");
+		mouth->setSpriteFrame("mouth" + UTIL::intToString(mouthID.at(currentCharacterID)) + "_open.png");
+		armLeg->setSpriteFrame("armLegDown.png");
+	}
+}
+
+void Character::changeCharacter()
+{
+	characterColour = Color3B(UTIL::randomNumber(0.0f, 256.0f), UTIL::randomNumber(0.0f, 256.0f), UTIL::randomNumber(0.0f, 256.0f));
+	body->setColor(characterColour);
+	armLeg->setColor(characterColour);
+
+	hair->setSpriteFrame("haircut" + UTIL::intToString(hairID.at(currentCharacterID)) + "_0.png");
+	mouth->setSpriteFrame("mouth" + UTIL::intToString(mouthID.at(currentCharacterID)) + "_open.png");
+	body->setSpriteFrame("body" + UTIL::intToString(bodyID.at(currentCharacterID))  + ".png");
+	eyes->setSpriteFrame("eyes" + UTIL::intToString(eyeID.at(currentCharacterID))  + ".png");
+
+	updateHair();
+}
+
+void Character::updateHair()
+{
+	if (hairID.at(currentCharacterID) == 1)
+	{
+		hair->setPosition(Vec2(0, 88));
+	}
+	else if (hairID.at(currentCharacterID) == 3)
+	{
+		hair->setPosition(Vec2(0, 116));
+	}
+	else
+	{
+		hair->setPosition(Vec2(0, 96));
 	}
 }
 
@@ -149,6 +193,10 @@ void Character::updateCharacter(float deltaTime, FoodSpawner &foodSpawner)
 				lastIdlePosition = characterBatch->getPosition();
 				flyTime = currentTime;
 				idleTime = currentTime;
+
+				hair->setSpriteFrame("haircut" + UTIL::intToString(hairID.at(currentCharacterID)) + "_1.png");
+				mouth->setSpriteFrame("mouth" + UTIL::intToString(mouthID.at(currentCharacterID)) + "_close.png");
+				armLeg->setSpriteFrame("armLegUp.png");
 			}
 		break;
 
@@ -168,6 +216,10 @@ void Character::updateCharacter(float deltaTime, FoodSpawner &foodSpawner)
 				characterStates = CharacterStates::IDLE;
 				idleTime = currentTime;
 				isBouncingUp = false;
+
+				hair->setSpriteFrame("haircut" + UTIL::intToString(hairID.at(currentCharacterID)) + "_0.png");
+				mouth->setSpriteFrame("mouth" + UTIL::intToString(mouthID.at(currentCharacterID)) + "_open.png");
+				armLeg->setSpriteFrame("armLegDown.png");
 			}
 		break;
 	}

@@ -1,0 +1,89 @@
+#include "ProgressBars.h"
+#include "Utilities/Utilities.h"
+
+#include <sstream>
+#include <string>
+#include <stdio.h>
+
+USING_NS_CC;
+
+void ProgressBars::createBars(cocos2d::Layer *layerToSpawn)
+{
+	SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+	spriteBatch = SpriteBatchNode::create("Atlases/ui.png");
+	cache->addSpriteFramesWithFile("Atlases/ui.plist");
+
+	visibleSize = Director::getInstance()->getVisibleSize();
+
+	originalBarHeight = 172;
+	sideOffset = 26;
+	topOffset = 10;
+
+    //Bottom food (static)
+	Sprite *foodProgressBottom = Sprite::createWithSpriteFrameName("foodBottomProgress.png");
+	foodProgressBottom->setPosition(Vec2(sideOffset, (visibleSize.height/2) - originalBarHeight));
+	spriteBatch->addChild(foodProgressBottom, 11);
+
+	//Bottom timer (static)
+	Sprite *timerProgressBottom = Sprite::createWithSpriteFrameName("timerBottomProgress.png");
+	timerProgressBottom->setPosition(Vec2((visibleSize.width) - sideOffset, (visibleSize.height/2) - originalBarHeight));
+	spriteBatch->addChild(timerProgressBottom, 11);
+
+	//Middle of progress food left (move down as progress)
+	foodProgressMiddle = Sprite::createWithSpriteFrameName("foodMiddleProgress.png");
+	foodProgressMiddle->setPosition(Vec2(sideOffset, (visibleSize.height/2)));
+	spriteBatch->addChild(foodProgressMiddle, 10);
+
+	//Middle of progress timer (move down as progress)
+	timerProgressMiddle = Sprite::createWithSpriteFrameName("timerMiddleProgress.png");
+	timerProgressMiddle->setPosition(Vec2((visibleSize.width) - sideOffset, (visibleSize.height/2)));
+	spriteBatch->addChild(timerProgressMiddle, 10);
+
+	//Top of progress food left (move down as progress)
+	foodProgressTop = Sprite::createWithSpriteFrameName("foodTopProgress.png");
+	foodProgressTop->setPosition(Vec2(sideOffset, (visibleSize.height/2) + (originalBarHeight+topOffset)));
+	spriteBatch->addChild(foodProgressTop, 12);
+
+	//Top of progress timer (move down as progress)
+	timerProgressTop = Sprite::createWithSpriteFrameName("timerTopProgress.png");
+	timerProgressTop->setPosition(Vec2((visibleSize.width) - sideOffset, (visibleSize.height/2) + (originalBarHeight+topOffset)));
+	spriteBatch->addChild(timerProgressTop, 12);
+
+    layerToSpawn->addChild(spriteBatch);
+}
+
+void ProgressBars::updateTimer(float delta)
+{
+	timer += delta;
+
+	float timerMax = 10;
+
+	if (timer > timerMax)
+	{
+		timer = 0;
+	}
+
+	float progressTimer = UTIL::lerp((originalBarHeight/2), -(originalBarHeight/2), timer / timerMax);
+
+	float resolutionPos = (visibleSize.height/2);
+	float newPosition = resolutionPos + progressTimer;
+
+	timerProgressMiddle->setPosition(Vec2((visibleSize.width) - sideOffset, newPosition));
+}
+
+void ProgressBars::updateFoodLeft()
+{
+	foodProgressTop->setPosition(Vec2(sideOffset, (visibleSize.height/2) + (originalBarHeight+topOffset)));
+}
+
+void ProgressBars::removeFood()
+{
+}
+
+void ProgressBars::resetTimer()
+{
+}
+
+void ProgressBars::resetFood()
+{
+}

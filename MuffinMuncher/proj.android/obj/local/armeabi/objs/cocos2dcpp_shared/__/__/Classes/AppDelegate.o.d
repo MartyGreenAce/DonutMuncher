@@ -355,8 +355,9 @@ obj/local/armeabi/objs/cocos2dcpp_shared/__/__/Classes/AppDelegate.o: \
  jni/../../cocos2d/cocos/3d/../deprecated/CCDeprecated.h \
  jni/../../Classes/MainGameScene.h \
  jni/../../Classes/Gameplay/FoodSpawner.h \
- jni/../../Classes/Gameplay/Character.h \
- jni/../../Classes/Gameplay/FoodSpawner.h
+ jni/../../Classes/ProgressBars.h jni/../../Classes/Gameplay/Character.h \
+ jni/../../Classes/Gameplay/FoodSpawner.h \
+ jni/../../Classes/ProgressBars.h
 
 jni/../../Classes/AppDelegate.h:
 
@@ -1070,6 +1071,10 @@ jni/../../Classes/MainGameScene.h:
 
 jni/../../Classes/Gameplay/FoodSpawner.h:
 
+jni/../../Classes/ProgressBars.h:
+
 jni/../../Classes/Gameplay/Character.h:
 
 jni/../../Classes/Gameplay/FoodSpawner.h:
+
+jni/../../Classes/ProgressBars.h:

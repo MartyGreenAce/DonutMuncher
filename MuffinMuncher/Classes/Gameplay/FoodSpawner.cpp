@@ -7,15 +7,16 @@
 
 USING_NS_CC;
 
-void FoodSpawner::spawnFood(cocos2d::Layer *layerToSpawn)
+void FoodSpawner::spawnFood(cocos2d::Layer *layerToSpawn, ProgressBars *progress)
 {
+	progressBar = progress;
+
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     foodbatch = SpriteBatchNode::create("Atlases/food.png");
     cache->addSpriteFramesWithFile("Atlases/food.plist");
 
     foodAmount = 10;
-    foodLeft = foodAmount;
-    offsetFromCenter = 256;
+    offsetFromCenter = 400;
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     for (int i = 0; i < foodAmount; i++)
@@ -35,25 +36,14 @@ void FoodSpawner::spawnFood(cocos2d::Layer *layerToSpawn)
     	foodbatch->addChild(sprite, 9);
     }
 
-    foodbatch->setPosition(visibleSize.width/2, visibleSize.height - offsetFromCenter);
-
-    foodLeftLabel = CCLabelTTF::create("Food Left: 0", "fonts/main", 32,
-                                       CCSizeMake(245, 64), kCCTextAlignmentCenter);
-
-    scoreLabel = CCLabelTTF::create("Score: 0", "fonts/main", 32,
-            						CCSizeMake(245, 64), kCCTextAlignmentCenter);
-
-    foodLeftLabel->setPosition(visibleSize.width/2, visibleSize.height/2);
-    scoreLabel->setPosition(visibleSize.width/2, (visibleSize.height/2) - 64);
-    layerToSpawn->addChild(foodLeftLabel, 2);
-    layerToSpawn->addChild(scoreLabel, 2);
+    foodbatch->setPosition(visibleSize.width/2, visibleSize.height + (offsetFromCenter/2));
 
     layerToSpawn->addChild(foodbatch);
 }
 
 void FoodSpawner::updateFood(float delta)
 {
-	float spinSpeed = 2;
+	float spinSpeed = 1.5f;
 	currentAngle += (delta * spinSpeed);
 
 	if (currentAngle > UTIL::PI*2)
@@ -68,9 +58,6 @@ void FoodSpawner::updateFood(float delta)
     	foodChildren.at(i)->setPosition(Vec2(cos(offsetAngle) * offsetFromCenter,
     							 	 	 	 sin(offsetAngle) * offsetFromCenter));
 	}
-
-    foodLeftLabel->setString(UTIL::intToString(foodLeft));
-    scoreLabel->setString(UTIL::intToString(score));
 }
 
 void FoodSpawner::resetFood()
@@ -96,22 +83,12 @@ void FoodSpawner::grabFood(Vec2 mouthPos)
 		{
 			Vec2 foodWorldPos = foodbatch->getPosition() + foodNode->getPosition();
 
-			cocos2d::log("Food Children: %d", (int)UTIL::distance(foodWorldPos, mouthPos));
-
 			if (UTIL::distance(foodWorldPos, mouthPos) < 128)
 			{
-				//foodbatch->removeChild(foodChildren.at(i), true);
+				progressBar->removeFood();
 				foodNode->setVisible(false);
-				foodLeft -= 1;
 				break;
 			}
 		}
-	}
-
-	if (foodLeft <= 0)
-	{
-		resetFood();
-		foodLeft = foodAmount;
-		score++;
 	}
 }

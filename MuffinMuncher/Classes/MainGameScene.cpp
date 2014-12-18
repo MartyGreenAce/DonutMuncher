@@ -1,5 +1,5 @@
 #include "MainGameScene.h"
-
+#include "Utilities/Utilities.h"
 USING_NS_CC;
 
 Scene* MainGameScene::createScene()
@@ -44,7 +44,22 @@ bool MainGameScene::init()
     this->addScenery(Vec2(visibleSize.width/2, visibleSize.height - 340), "stars.png", spritebatch, 2);
     this->addChild(spritebatch);
 
-    foodSpawner.spawnFood(this);
+    //Setup score
+    scoreLabel = CCLabelTTF::create("0", "fonts/main", 64,
+            						CCSizeMake(245, 64), kCCTextAlignmentCenter);
+    scoreLabel->setPosition(visibleSize.width/2, visibleSize.height/2);
+    this->addChild(scoreLabel, 2);
+
+    progressBars.createBars(this);
+
+    //Circle backdrop
+	Sprite *circleSprite = Sprite::createWithSpriteFrameName("circle.png");
+	circleSprite->setPosition(Vec2((visibleSize.width/2), (visibleSize.height/2)));
+	circleSprite->setOpacity(155);
+	circleSprite->setScale(2);
+	this->addChild(circleSprite, 0);
+
+    foodSpawner.spawnFood(this, &progressBars);
     character.createCharacter(this, foodSpawner);
 
     //Register Touch Event
@@ -62,6 +77,18 @@ void MainGameScene::update(float delta)
 {
 	foodSpawner.updateFood(delta);
 	character.updateCharacter(delta, foodSpawner);
+	progressBars.updateTimer(delta);
+
+	if (progressBars.foodRemaining() <= 0)
+	{
+		progressBars.resetFood();
+		progressBars.resetTimer();
+
+		foodSpawner.resetFood();
+
+		score++;
+		scoreLabel->setString(UTIL::intToString(score));
+	}
 }
 
 bool MainGameScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)

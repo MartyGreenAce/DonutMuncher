@@ -1,0 +1,115 @@
+#include "FoodSpawner.h"
+#include "Utilities/Utilities.h"
+
+#include <sstream>
+#include <string>
+#include <stdio.h>
+
+USING_NS_CC;
+
+void FoodSpawner::spawnFood(cocos2d::Layer *layerToSpawn, ProgressBars *progress)
+{
+	progressBar = progress;
+
+    SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+    foodbatch = SpriteBatchNode::create("Atlases/food.png");
+    cache->addSpriteFramesWithFile("Atlases/food.plist");
+
+    foodAmount = 10;
+    offsetFromCenter = 460;
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+
+    for (int i = 0; i < foodAmount; i++)
+    {
+    	float currentAngle = ((UTIL::PI*2) / (float)foodAmount) * (float)i;
+    	int randomSprite = arc4random() % 4;
+
+    	std::ostringstream temp;
+    	temp << randomSprite;
+    	Sprite *sprite = Sprite::createWithSpriteFrameName("food" + temp.str() + ".png");
+
+    	sprite->setPosition(Vec2(cos(currentAngle) * offsetFromCenter,
+    							 sin(currentAngle) * offsetFromCenter));
+
+    	sprite->setScale(0.75f);
+
+    	foodbatch->addChild(sprite, 9);
+    }
+
+    foodbatch->setPosition(visibleSize.width/2, visibleSize.height + (offsetFromCenter/2));
+
+    foodLeftLabel = CCLabelTTF::create("Food Left: 0", "fonts/main", 32,
+                                       CCSizeMake(245, 64), kCCTextAlignmentCenter);
+
+    scoreLabel = CCLabelTTF::create("Score: 0", "fonts/main", 32,
+            						CCSizeMake(245, 64), kCCTextAlignmentCenter);
+
+    foodLeftLabel->setPosition(visibleSize.width/2, visibleSize.height/2);
+    scoreLabel->setPosition(visibleSize.width/2, (visibleSize.height/2) - 64);
+    layerToSpawn->addChild(foodLeftLabel, 2);
+    layerToSpawn->addChild(scoreLabel, 2);
+
+    layerToSpawn->addChild(foodbatch);
+}
+
+void FoodSpawner::updateFood(float delta)
+{
+	float spinSpeed = 1;
+	currentAngle += (delta * spinSpeed);
+
+	if (currentAngle > UTIL::PI*2)
+	{
+		currentAngle = 0;
+	}
+
+	const cocos2d::Vector<Node*> foodChildren = foodbatch->getChildren();
+	for (int i = 0; i < foodChildren.size(); i++)
+	{
+    	float offsetAngle = (((UTIL::PI*2) / (float)foodAmount) * (float)i) + currentAngle;
+    	foodChildren.at(i)->setPosition(Vec2(cos(offsetAngle) * offsetFromCenter,
+    							 	 	 	 sin(offsetAngle) * offsetFromCenter));
+	}
+
+    foodLeftLabel->setString(UTIL::intToString(foodLeft));
+    scoreLabel->setString(UTIL::intToString(score));
+}
+
+void FoodSpawner::resetFood()
+{
+	const cocos2d::Vector<Node*> foodChildren = foodbatch->getChildren();
+
+	for (int i = 0; i < foodChildren.size(); i++)
+	{
+		foodChildren.at(i)->setVisible(true);
+	}
+}
+
+void FoodSpawner::grabFood(Vec2 mouthPos)
+{
+	const cocos2d::Vector<Node*> foodChildren = foodbatch->getChildren();
+	Node *parentFood = foodbatch->getParent();
+
+	for (int i = 0; i < foodChildren.size(); i++)
+	{
+		Node* foodNode = foodChildren.at(i);
+
+		if (foodNode->isVisible())
+		{
+			Vec2 foodWorldPos = foodbatch->getPosition() + foodNode->getPosition();
+
+			if (UTIL::distance(foodWorldPos, mouthPos) < 128)
+			{
+				progressBar->removeFood();
+				foodNode->setVisible(false);
+				break;
+			}
+		}
+	}
+
+	if (progressBar->foodLeft() <= 0)
+	{
+		progressBar->resetFood();
+		resetFood();
+		score++;
+	}
+}

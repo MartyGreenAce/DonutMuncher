@@ -2,7 +2,9 @@
 #define __CHARACTER_H__
 
 #include "cocos2d.h"
-#include "FoodSpawner.h"
+#include "Gameplay/FoodSpawner.h"
+
+#include <vector>
 
 USING_NS_CC;
 
@@ -21,16 +23,27 @@ public:
 	void clickedScreen();
 	void setState(CharacterStates newState);
 
+	void changeCharacter();
+	void updateHair();
+
 private:
 	CharacterStates characterStates;
+
 	Sprite *body;
 	Sprite *eyes;
 	Sprite *hair;
 	Sprite *mouth;
 	Sprite *armLeg;
+
+	Color3B characterColour;
 	SpriteBatchNode *characterBatch;
 
 	int currentCharacterID;
+
+	std::vector<int> bodyID;
+	std::vector<int> hairID;
+	std::vector<int> eyeID;
+	std::vector<int> mouthID;
 
 	double currentTime;
 
